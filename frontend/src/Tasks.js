@@ -12,9 +12,10 @@ class Tasks extends Component {
     async componentDidMount() {
         try {
             const { data } = await getTasks();
-            this.setState({ tasks: data });
+            this.setState({ tasks: Array.isArray(data) ? data : [] });
         } catch (error) {
             console.log(error);
+            this.setState({ tasks: [] });
         }
     }
 
